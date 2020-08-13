@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        std::ios::sync_with_stdio(false);
+        std::cin.tie(nullptr);
+        std::cout.tie(nullptr);
+        
+        int* occurences = new int[26];
+        
+        for (int i = 0; i < 26; ++i)
+        {
+            occurences[i] = 0;
+        }        
+        
+        for (int i = 0; i < magazine.size(); ++i)
+        {
+            ++occurences[magazine[i] - 'a'];
+        }
+        
+        for (int i = 0; i < ransomNote.size(); ++i)
+        {
+            --occurences[ransomNote[i] - 'a'];
+        }
+        
+        for (int i = 0; i < 26; ++i)
+        {
+            if (occurences[i] < 0)
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};
